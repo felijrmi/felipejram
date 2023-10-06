@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Imágenes</title>
+    <style>
+        body {
+            background-color: lightblue;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h3 {
+            color: #FF6A00;
+        }
+
+        h2 {
+            background: linear-gradient(to right, #FF6A00, #FF00AA);
+            color: lightblue;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #bloqueA, #bloqueB {
+            display: block; /* Cambia a "block" para que estén uno debajo del otro */
+            margin: 20px auto; /* Auto para centrar horizontalmente */
+            border: 2px solid #FF00AA;
+            border-radius: 10px;
+            padding: 20px;
+            background: linear-gradient(to right, #FF6A00, #FF00AA);
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            max-width: 300px; /* Ancho máximo para evitar que sean demasiado anchos */
+        }
+
+       button {
+    background-color: #00FFAE;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; /* Hace que el texto sea negrita */
+    
+
+        }
+
+        input[type="number"] {
+            background-color: #00FFAE;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #resultado {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h3>SUMA ALEATORIA</h3>
+    <p>Suma de gatitos:</p>
+
+    <div id="bloqueA">
+        <h2>Bloque A</h2>
+        <p>Cantidades:</p>
+        <div id="imagenesContainerA"></div>
+    </div>
+    <div id="bloqueB">
+        <h2>Bloque B</h2>
+        <p>Cantidades:</p>
+        <div id="imagenesContainerB"></div>
+    </div>
+    <button onclick="generarImagenes()">Generar Imágenes</button>
+
+    <input type="number" id="sumaInput" placeholder="Ingrese la suma">
+    <button onclick="verificarSuma()">Verificar</button>
+    <div id="resultado"></div>
+
+    <script>
+        function generarImagenes() {
+            const containerA = document.getElementById("imagenesContainerA");
+            const containerB = document.getElementById("imagenesContainerB");
+            containerA.innerHTML = "";
+            containerB.innerHTML = "";
+
+            // Generar un número aleatorio entre 1 y 20 para el bloque A
+            const cantidadA = Math.floor(Math.random() * 20) + 1;
+
+            // Generar un número aleatorio entre 1 y 20 para el bloque B
+            const cantidadB = Math.floor(Math.random() * 20) + 1;
+            
+            
+             document.querySelector("#bloqueA p").textContent = "Cantidad: " + cantidadA;
+    document.querySelector("#bloqueB p").textContent = "Cantidad: " + cantidadB;
+
+            // Rutas de tus imágenes de 50x50 y sus descripciones para el bloque A
+            const imagenesA = [
+                { src: "GATITO.png", alt: "Descripción de la imagen A 1" },
+                // Agrega más imágenes según sea necesario
+            ];
+
+            // Rutas de tus imágenes de 50x50 y sus descripciones para el bloque B
+            const imagenesB = [
+                { src: "GATITO.png", alt: "Descripción de la imagen B 1" },
+                // Agrega más imágenes según sea necesario
+            ];
+
+            // Agregar imágenes aleatorias al contenedor del bloque A
+            for (let i = 0; i < cantidadA; i++) {
+                const randomIndex = Math.floor(Math.random() * imagenesA.length);
+                const img = document.createElement("img");
+                img.src = imagenesA[randomIndex].src;
+                img.alt = imagenesA[randomIndex].alt;
+                img.width = 50;
+                img.height = 50;
+                containerA.appendChild(img);
+            }
+
+            // Agregar imágenes aleatorias al contenedor del bloque B
+            for (let i = 0; i < cantidadB; i++) {
+                const randomIndex = Math.floor(Math.random() * imagenesB.length);
+                const img = document.createElement("img");
+                img.src = imagenesB[randomIndex].src;
+                img.alt = imagenesB[randomIndex].alt;
+                img.width = 50;
+                img.height = 50;
+                containerB.appendChild(img);
+            }
+        }
+
+        function verificarSuma() {
+            const sumaInput = document.getElementById("sumaInput").value;
+            const cantidadA = parseInt(document.getElementById("imagenesContainerA").children.length);
+            const cantidadB = parseInt(document.getElementById("imagenesContainerB").children.length);
+
+            if (sumaInput == cantidadA + cantidadB) {
+                document.getElementById("resultado").innerHTML = "😃 ¡Respuesta correcta!";
+            } else {
+                document.getElementById("resultado").innerHTML = "😞 Respuesta incorrecta. Inténtalo de nuevo.";
+            }
+        }
+    </script>
+    
+     <div style="background-color: #00CED1; padding: 5px; position: fixed; bottom: 0; width: 100%;">
+        <p style="font-size: 16px; color: white; text-align: center;">FELIPE JULON RAMIREZ</p>
+    </div>
+</body>
+</html>
+
